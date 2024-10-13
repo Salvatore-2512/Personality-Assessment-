@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Scores</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 50px;
+        }
+        .score-container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 0 auto;
+            max-width: 400px;
+        }
+        h2 {
+            margin-bottom: 20px;
+        }
+        .score {
+            font-size: 24px;
+            margin: 10px 0;
+        }
+        .back-button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="score-container">
+    <h2>Your Quiz Scores</h2>
+    <div class="score" id="aggressive-score"></div>
+    <div class="score" id="submissive-score"></div>
+    <div class="score" id="assertive-score"></div>
+    <a href="index.html" class="back-button">Back to Quiz</a>
+</div>
+
+<script>
+    // Function to get query parameters
+    function getQueryParams() {
+        const params = {};
+        const queryString = window.location.search.substring(1);
+        const pairs = queryString.split('&');
+
+        pairs.forEach(pair => {
+            const [key, value] = pair.split('=');
+            params[decodeURIComponent(key)] = decodeURIComponent(value);
+        });
+
+        return params;
+    }
+
+    // Display scores on the page
+    const params = getQueryParams();
+    document.getElementById('aggressive-score').innerText = `Aggressive Score: ${params.score1 || 0}`;
+    document.getElementById('submissive-score').innerText = `Submissive Score: ${params.score2 || 0}`;
+    document.getElementById('assertive-score').innerText = `Assertive Score: ${params.score3 || 0}`;
+</script>
+
+</body>
+</html>
